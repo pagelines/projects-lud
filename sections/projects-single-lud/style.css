@@ -1,0 +1,12 @@
+        /*****************************options style*****************************/
+form[data-sid="projects-single-lud"] .opt{background: #2f2f2f !important;}
+form[data-sid="projects-single-lud"] label{color:white !important; font-size:1em !important;}
+form[data-sid="projects-single-lud"] label .btn.btn-mini{float: right;}
+form[data-sid="projects-single-lud"] .opt-name{font-size: 1.3em !important; background: white !important; box-shadow: 0 0 0 !important; color:#017EB9 !important;}
+form[data-sid="projects-single-lud"] select{margin-bottom: 10px;}
+form[data-sid="projects-single-lud"] input{margin-bottom: 10px;}
+form[data-sid="projects-single-lud"] textarea{margin-bottom: 10px;}
+form[data-sid="projects-single-lud"] .check-standard{display: block !important;}
+form[data-sid="projects-single-lud"] .check-flip{display: none !important;}
+form[data-sid="projects-single-lud"] #pl_section_styling label{color: black !important;}
+form[data-sid="projects-single-lud"] #pl_section_styling{background: whitesmoke !important; }

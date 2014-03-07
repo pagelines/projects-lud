@@ -1,0 +1,68 @@
+
+.proj-container {
+	position: relative;
+	min-height: 120px;
+	overflow: hidden;
+	ul{
+		opacity: 0;
+		list-style-type: none;
+	}
+	.proj-item{
+		float: left;
+		display:block;
+		.box-sizing(border-box);
+	}
+	.proj-feature{}
+	//.fredslider li{width: 33%;}
+	.in-grid{	margin: 0 auto; li{width: 33%;}}
+	.masonry-brick{
+		margin: 8px 0;
+		overflow: hidden;
+		display:block;
+	}
+
+}
+/***************************** controls *****************************/
+.section-projects-lud{
+	.proj-container:hover{
+		.proj-prev, .proj-next{opacity:1;}
+	}
+
+	.proj-prev, .proj-next{
+		display: none;
+		opacity: 0;
+		top: 50%;
+		position:absolute;
+		.transition(opacity .3s linear);
+		font-size: 40px;
+		font-size: 62px;
+		a{color: #333;}
+	}
+	.proj-prev{left: 0;}
+	.proj-next{right: 0;}
+	.proj-pager{
+		display: none;
+		text-align: center;
+		margin-top: 8px;
+		padding-top: 2px;
+		a {
+			display: inline-block;
+			padding: 5px;
+		}
+		a.selected span {
+			background: black;
+			background: #FF7F50;
+		}
+		span {
+			border-radius: 30px;
+			background: orangered;
+			background: #333;
+			font-size: 0;
+			line-height: 0;
+			display: inline-block;
+			width: 14px;
+			height: 14px;
+			overflow: hidden;
+		}
+	}
+}

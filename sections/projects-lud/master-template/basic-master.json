@@ -1,0 +1,7 @@
+{   
+            "template_name": "basic",
+            "col_num": "custom",
+            "slide_gutter": 12,
+            "use_link":"link",
+            "equal_height": 1
+}
