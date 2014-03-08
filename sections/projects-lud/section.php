@@ -51,6 +51,7 @@ class ProjectsLud extends PageLinesSection {
 			'pager_color'		=> array('.'.$this->prefix.'-pager span','#'.$this->opt('pager_color'), 'color'),
 			'pageractive_color'	=> array('.'.$this->prefix.'-pager a.selected span','#'.$this->opt('pageractive_color'), 'color'),
 		);
+
 		$css_code = '';
 		foreach ($colors as $key => $value) {
 			if($value[1] && $value[1] !== '#' && $value[1] !== 'px' ){
