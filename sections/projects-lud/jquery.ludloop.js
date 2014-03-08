@@ -1,5 +1,5 @@
 /*
-ver: 1.1
+ver: 1.3
 */
 //TODO: ludResponsive - prebaciti responsiveClasses i ItemStyle u $(document).ready(...); u jednu varijablu koja se zove u section_head-u
 jQuery(window).load(function(){
@@ -12,7 +12,8 @@ jQuery(window).load(function(){
 			enable_animation: false,
 			use_link: false,
 			defFredWidth: 200,
-			fredWidth: 300
+			fredWidth: 300,
+			fluid: false
 		},
 		init: function() {
 			self = this;
@@ -31,8 +32,8 @@ jQuery(window).load(function(){
 					isFitWidth: true,
 					columnWidth: self.options.itemWidth
 				};
-				if(self.options.numslides === 0 ) {
-					masonryObj.isFitWidth = true;
+				if(self.options.numslides === 0 && self.options.fluid === true ) {
+					masonryObj.isFitWidth = false;
 				}
 				self.selectors.wraper.masonry(masonryObj);
 			}

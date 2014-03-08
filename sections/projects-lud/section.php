@@ -2,16 +2,13 @@
 /*
 	Section: Projects Lud
 	Author: bestrag
-	Version: 0.5.2
+	Version: 1.0
 	Author URI: http://bestrag.net
 	Demo: http://bestrag.net/projects_lud/
 	Description: Custom Post Type Section for displaying Projects/Portfolio
 	Class Name: ProjectsLud
 	Filter: component
 */
-
-//store version 0.9.8
-
 
 class ProjectsLud extends PageLinesSection {
 	var $lud_opts		= array();
@@ -42,6 +39,7 @@ class ProjectsLud extends PageLinesSection {
 			'imgbg'			=> array('.'.$this->prefix.'-feature','#'.$this->opt('imgbg'), 'background-color'),
 			'title_color'		=> array('.'.$this->prefix.'-post_title','#'.$this->opt('title_color'), 'color'),
 			'content_color'		=> array('.'.$this->prefix.'-post_content','#'.$this->opt('content_color'), 'color'),
+			'excerpt_color'		=> array('.'.$this->prefix.'-post_excerpt','#'.$this->opt('content_color'), 'color'),
 			'client_color'		=> array('.'.$this->prefix.'-client_name','#'.$this->opt('client_color'), 'color'),
 			'slogan_color'		=> array('.'.$this->prefix.'-project_slogan','#'.$this->opt('slogan_color'), 'color'),
 			'partner_color'	=> array('.'.$this->prefix.'-partner','#'.$this->opt('partner_color'), 'color'),
@@ -91,6 +89,7 @@ class ProjectsLud extends PageLinesSection {
 		$this->lud_opts['use_link']	= ( $this->opt( 'use_link' ) ) ? $this->opt( 'use_link' ) : false;
 		//layout
 		$this->lud_opts['numslides']	= ( $this->opt( 'col_num' ) )  ? intval($this->opt( 'col_num' )) : 4;
+		$this->lud_opts['fluid']	= ( $this->opt( 'fluid') ) ? true : false ;
 		$this->lud_opts['slide_gutter']	= ( $this->opt( 'slide_gutter' ) ) ?  intval($this->opt( 'slide_gutter' ) ) : '0' ;
 		if(is_numeric($this->lud_opts['slide_gutter'])) $this->lud_opts['slide_gutter'] .= 'px';
 		//true by default
@@ -465,7 +464,11 @@ class ProjectsLud extends PageLinesSection {
 						'5'		=> array( 'name' => __( '5', 'pagelines' ) ),
 						'6'		=> array( 'name' => __( '6', 'pagelines' ) ),
 					)
-					//'ref'	=> __( 'For usage with Animation disabled and custom number of columns. Find out more at Projects Lud Docs page.', 'pagelines' ),
+				),
+				array(
+					'key'	=>	'fluid',
+					'type'			=> 'check',
+					'label'	=> __( 'Enable fluid items (read more info)', 'pagelines' ),
 				)
 			)
 		);
@@ -877,7 +880,7 @@ class ProjectsLud extends PageLinesSection {
 			),
 			array(
 				'title'		=>   'Web Identity',
-'content'   =>'Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor inadip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea. Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Give us a try!',
+				'content'   =>'Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor inadip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea. Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Give us a try!',
 				'client_name' =>   'bestrag',
 				'partner' =>   'Cooperation Company',
 				'client_name_url'	=>   'http://www.pagelines.com',
@@ -891,7 +894,7 @@ class ProjectsLud extends PageLinesSection {
 			),
 			array(
 				'title'		=>   'Events Identity',
-'content'   =>'Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor inadip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea. Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Give us a try!',
+				'content'   =>'Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor inadip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea. Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Give us a try!',
 				'client_name' =>   'bestrag',
 				'partner' =>   'Cooperation Company',
 				'client_name_url'	=>   'http://www.pagelines.com',
@@ -905,7 +908,7 @@ class ProjectsLud extends PageLinesSection {
 			),
 			array(
 				'title'		=>   'Digital Identity',
-'content'   =>'Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor inadip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea. Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Give us a try!',
+				'content'   =>'Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor inadip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea. Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Give us a try!',
 				'client_name' =>   'bestrag',
 				'partner' =>   'Cooperation Company',
 				'client_name_url'	=>   'http://www.pagelines.com',
@@ -919,7 +922,7 @@ class ProjectsLud extends PageLinesSection {
 			),
 			array(
 				'title'		=>   'Business Startups',
-'content'   =>'Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor inadip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea. Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Give us a try!',
+				'content'   =>'Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor inadip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea. Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Give us a try!',
 				'client_name' =>   'bestrag',
 				'partner' =>   'Cooperation Company',
 				'client_name_url'	=>   'http://www.pagelines.com',
@@ -933,7 +936,7 @@ class ProjectsLud extends PageLinesSection {
 			),
 			array(
 				'title'		=>   'Mobile Identity',
-'content'   =>'Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor inadip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea. Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Give us a try!',
+				'content'   =>'Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor inadip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea. Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Give us a try!',
 				'client_name' =>   'bestrag',
 				'partner' =>   'Cooperation Company',
 				'client_name_url'	=>   'http://www.pagelines.com',
@@ -947,7 +950,7 @@ class ProjectsLud extends PageLinesSection {
 			),
 			array(
 				'title'		=>   'Digital Grafic',
-'content'   =>'Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor inadip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea. Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Give us a try!',
+				'content'   =>'Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor inadip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea. Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Give us a try!',
 				'client_name' =>   'bestrag',
 				'partner' =>   'Cooperation Company',
 				'client_name_url'	=>   'http://www.pagelines.com',
@@ -961,7 +964,7 @@ class ProjectsLud extends PageLinesSection {
 			),
 			array(
 				'title'		=>   'Story Telling',
-'content'   =>'Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor inadip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea. Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Give us a try!',
+				'content'   =>'Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor inadip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Since we are using Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea. Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, Lorem ipsum dolor sit amet, con se ctetur adip is cing elit, sed do eiusmod tempor sed do eiusmod tempor in cididunt ut labore et do lore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris Give us a try!',
 				'client_name' =>   'jumpmouse',
 				'partner' =>   'Cooperation Company',
 				'client_name_url'	=>   'http://www.pagelines.com',
@@ -1047,6 +1050,7 @@ class ProjectsLud extends PageLinesSection {
 			'mode' => null,
 			'pause' => null,
 			'speed' => null,
+			'fluid' => null,
 			'opt_set_info' => $template
 		);
 		$data_path = $this->base_dir.'/master-template/';

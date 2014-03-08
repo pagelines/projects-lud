@@ -1,0 +1,4 @@
+[
+"feature",  ["post_title","client_name","partner"],
+["post_title","post_excerpt", "custom_text1"]
+]

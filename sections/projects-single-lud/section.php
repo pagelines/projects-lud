@@ -2,7 +2,7 @@
 /*
 	Section: Projects Single Lud
 	Author: bestrag
-	Version: 0.0.5
+	Version: 1.0
 	Author URI: http://bestrag.net
 	Demo: http://bestrag.net/projects-lud/
 	Description: Projects Single Lud
@@ -89,7 +89,7 @@ class ProjectsSingleLud extends PageLinesSection {
 			'title'		=> __( $this->multiple_up.' Single Lud settings', 'pagelines' ),
 			'opts' => array()
 		);
-		if( $this->multiple !== get_post_type( get_the_ID() ) )
+		//if( $this->multiple !== get_post_type( get_the_ID() ) )
 			$opts[0]['opts'][] = array(
 				'key'	=>	'single_post_id',
 				'type' 			=> 'select',
