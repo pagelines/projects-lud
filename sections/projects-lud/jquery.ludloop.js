@@ -1,7 +1,7 @@
 /*
-ver: 1.3
+ver: 1.5
 */
-//TODO: ludResponsive - prebaciti responsiveClasses i ItemStyle u $(document).ready(...); u jednu varijablu koja se zove u section_head-u
+//TODO: ludResponsive - add responsiveClasses & ItemStyle to $(document).ready(...);
 jQuery(window).load(function(){
 	var ludLoop = function(selectors, options){
 		this.selectors = selectors;
@@ -13,7 +13,8 @@ jQuery(window).load(function(){
 			use_link: false,
 			defFredWidth: 200,
 			fredWidth: 300,
-			fluid: false
+			fluid: false,
+			fredObject: {}
 		},
 		init: function() {
 			self = this;
@@ -83,6 +84,7 @@ jQuery(window).load(function(){
 					self.selectors.next.show(0);
 					self.selectors.prev.show(0);
 				}
+				defFredObj = jQuery.extend({},defFredObj,self.options.fredObject);
 				//initiate fred
 				self.selectors.wraper.delay(800, 'carouFredSel').carouFredSel(defFredObj);
 				self.itemHeight();

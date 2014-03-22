@@ -2,7 +2,7 @@
 /*
 	Section: Projects Lud
 	Author: bestrag
-	Version: 1.0
+	Version: 1.1
 	Author URI: http://bestrag.net
 	Demo: http://bestrag.net/projects_lud/
 	Description: Custom Post Type Section for displaying Projects/Portfolio
@@ -42,9 +42,9 @@ class ProjectsLud extends PageLinesSection {
 			'excerpt_color'		=> array('.'.$this->prefix.'-post_excerpt','#'.$this->opt('content_color'), 'color'),
 			'client_color'		=> array('.'.$this->prefix.'-client_name','#'.$this->opt('client_color'), 'color'),
 			'slogan_color'		=> array('.'.$this->prefix.'-project_slogan','#'.$this->opt('slogan_color'), 'color'),
-			'partner_color'	=> array('.'.$this->prefix.'-partner','#'.$this->opt('partner_color'), 'color'),
-			'custom1_color'	=> array('.'.$this->prefix.'-custom_text1','#'.$this->opt('custom1_color'), 'color'),
-			'custom2_color'	=> array('.'.$this->prefix.'-custom_text2','#'.$this->opt('custom2_color'), 'color'),
+			'partner_color'		=> array('.'.$this->prefix.'-partner','#'.$this->opt('partner_color'), 'color'),
+			'custom1_color'		=> array('.'.$this->prefix.'-custom_text1','#'.$this->opt('custom1_color'), 'color'),
+			'custom2_color'		=> array('.'.$this->prefix.'-custom_text2','#'.$this->opt('custom2_color'), 'color'),
 			'arrow_colorL'		=> array('.'.$this->prefix.'-prev a','#'.$this->opt('arrow_color'), 'color'),
 			'arrow_colorR'		=> array('.'.$this->prefix.'-next a','#'.$this->opt('arrow_color'), 'color'),
 			'arrow_size'		=> array('.'.$this->prefix.'-prev, .'.$this->prefix.'-next', $this->opt('arrow_size').'px', 'font-size'),
@@ -67,8 +67,11 @@ class ProjectsLud extends PageLinesSection {
 
 	/* section_head */
 	function section_head() {
-		if( $this->opt('opt_set_select') ) $this->update_lud_settings($this->opt('opt_set_select'));
-		$this->meta['set'] = wp_parse_args( $this->temp_meta, $this->meta['set'] );
+		$clone_id = $this->meta['clone'];
+		if( $this->opt('opt_set_select') ) {
+			$this->update_lud_settings($this->opt('opt_set_select'));
+			if( array_key_exists($clone_id, $this->temp_meta) )$this->meta['set'] = wp_parse_args( $this->temp_meta[$clone_id], $this->meta['set'] );
+		}
 		//less template
 		$this->lud_opts['template_name']	= ( $this->opt( 'template_name' ) ) ? $this->opt( 'template_name' ) : $this->default_template;
 		//text style and weight
@@ -161,13 +164,15 @@ class ProjectsLud extends PageLinesSection {
 							ludOpts[cloneID]['numslides'] = 1;
 						}
 
-						var calcItemWidth = (ludSelectors[cloneID]['container'].width()/ludOpts[cloneID]['numslides']) - 1;
-						ludSelectors[cloneID]['ludItem'].css({'width' :calcItemWidth});
+						//set single item width
+						var calcItemWidth = Math.floor((ludSelectors[cloneID]['container'].width()/ludOpts[cloneID]['numslides']) );
+						ludSelectors[cloneID]['ludItem'].css({
+							'width' :	calcItemWidth
+						});
+						ludOpts[cloneID]['itemWidth'] = calcItemWidth;
 						//add responsive classes to each item
 						if (400 < calcItemWidth && 600 > calcItemWidth) ludSelectors[cloneID]['container'].addClass(ludOpts[cloneID]['template_name'] + '-c2');
 						if (400 > calcItemWidth) ludSelectors[cloneID]['container'].addClass(ludOpts[cloneID]['template_name'] + '-c3');
-						//calculate masonry column width
-						ludOpts[cloneID]['itemWidth'] = Math.ceil(calcItemWidth);
 					}
 				}
 			});
@@ -191,7 +196,8 @@ class ProjectsLud extends PageLinesSection {
 
 	//section template
 	function section_template(){
-		$this->meta['set']	= wp_parse_args( $this->temp_meta, $this->meta['set'] );
+		$clone_id = $this->meta['clone'];
+		if( array_key_exists($clone_id, $this->temp_meta) )$this->meta['set'] = wp_parse_args( $this->temp_meta[$clone_id], $this->meta['set'] );
 		//params
 		$template_name	= ( $this->opt( 'template_name' ) ) ? $this->opt( 'template_name' ) : $this->default_template;
 		$use_link		= ( $this->opt('use_link') ) ? $this->opt('use_link') : false;
@@ -239,10 +245,10 @@ class ProjectsLud extends PageLinesSection {
 				$temp_data['feature'][0]	= get_the_post_thumbnail();
 
 				if(array_key_exists('img1', $temp_data) && $temp_data['img1'][0]) {
-					$temp_data['img1'][0]	= (array_key_exists('demo', $temp_data) && $temp_data['demo'][0]) ?  '<img src="'. $temp_data['img1'][0] . '">' :  wp_get_attachment_image($temp_data['img1'][0]);
+					$temp_data['img1'][0]	= (array_key_exists('demo', $temp_data) && $temp_data['demo'][0]) ?  '<img src="'. $temp_data['img1'][0] . '">' :  wp_get_attachment_image($temp_data['img1'][0], 'full');
 				}
 				if(array_key_exists('img2', $temp_data) && $temp_data['img2'][0]) {
-					$temp_data['img2'][0]	= (array_key_exists('demo', $temp_data) && $temp_data['demo'][0]) ?  '<img src="'. $temp_data['img2'][0] . '">' :  wp_get_attachment_image($temp_data['img2'][0]);
+					$temp_data['img2'][0]	= (array_key_exists('demo', $temp_data) && $temp_data['demo'][0]) ?  '<img src="'. $temp_data['img2'][0] . '">' :  wp_get_attachment_image($temp_data['img2'][0], 'full');
 				}
 				if (array_key_exists('demo', $temp_data) && $temp_data['demo'][0])  $temp_data['feature'][0] =  $temp_data['img1'][0];
 				//add link where needed
@@ -251,7 +257,6 @@ class ProjectsLud extends PageLinesSection {
 						$temp_data[$key][0] = '<a href="' .  $temp_data[$key.'_url'][0] . '">'. $temp_data[$key][0] .'</a>';
 					}
 				}
-				//var_dump($temp_data); die;
 				//collects all posts data in one array
 				$post_data[] = $temp_data;
 				//create link to single post
@@ -262,7 +267,7 @@ class ProjectsLud extends PageLinesSection {
 				}
 				//render elements
 				$all_elems = '';
-				$group_index = 1; //var_dump($template_json);
+				$group_index = 1;
 				foreach ($template_json as $key => $value) {
 					$key++;
 					//template json - if array in array
@@ -282,11 +287,9 @@ class ProjectsLud extends PageLinesSection {
 						$all_elems .= $group;
 						$group_index++;
 					}else{
-						//var_dump($post_data[$index][$value][0], $index, $value);
 						//and again
 						if(!array_key_exists($value, $post_data[$index])) $post_data[$index][$value][0] = '';
 						//add link only to imgs and title
-
 						if($a_close && in_array($value, $link_elems)){$a_start = $a_open; $a_end = $a_close;}else{$a_start = ''; $a_end = '';}
 						$elem = sprintf('%4$s<div class="%1$s-%2$s">%3$s</div>%5$s',$this->prefix, $value, $post_data[$index][$value][0], $a_start, $a_end );
 						$all_elems .= $elem;
@@ -434,7 +437,7 @@ class ProjectsLud extends PageLinesSection {
 						'5'		=> array( 'name' => __( '5', 'pagelines' ) ),
 						'6'		=> array( 'name' => __( '6', 'pagelines' ) ),
 					),
-					'help'	=> __( 'Custom can be used in grid layout, if you want variable items width. More at Project Lud Docs page.', 'pagelines' )
+					'help'	=> __( 'Custom can be used in grid layout, if you want variable/fluid items width. More at Project Lud Docs page.', 'pagelines' )
 				),
 				array(
 					'key'	=>	'slides_num',
@@ -700,9 +703,8 @@ class ProjectsLud extends PageLinesSection {
 
 	//section persistent
 	function section_persistent(){
-		add_action( 'template_redirect',array(&$this, 'projects_lud_less') );
+		//add_action( 'template_redirect',array(&$this, 'projects_lud_less') );
 		add_filter( 'pl_settings_array', array( &$this, 'get_meta_array' ) );
-		//add_filter('pless_vars', array(&$this, 'add_less_vars'));
 		//set post
 		$this->post_type_setup();
 		if(!class_exists('RW_Meta_Box')) {
@@ -1066,68 +1068,10 @@ class ProjectsLud extends PageLinesSection {
 	}
 
 	//handle less template
-	function projects_lud_less(){
+/*	function projects_lud_less(){
 		$template	= (isset( $this->meta['set']['template_name'])) ? $this->meta['set']['template_name'] : $this->default_template;
 		$template_file 	= sprintf('%s/templates/%s.less', $this->base_dir, $template);
 		pagelines_insert_core_less( $template_file );
 	}
-
-}//EOC
-
-/*
-
-{
-	"template_name" : null,
-		//classic-circle
-		//classic-square
-		//box-circle
-		//box-square
-		//fullwidth-hipster
-		//fullwidth-flat
-		//fullwidth-circle
-		//card
-		//default (default)
-	"use_link" : null,
-		//colorbox
-	"taxonomy" : null,
-		//
-	"order" : null,
-		//ASC	(default)
-		//DESC
-	"orderby" : null,
-		//title
-		//name	(default)
-		//date
-		//modified
-		//ID
-		//author
-		//none
-	"col_num" : null,
-		//1-6	(default 4)
-	"slides_num" : null,
-		//integer
-	"slide_gutter" : null,
-		//integer
-	"equal_height" : null,
-		//1 (bool)
-	"text_italic" : null,
-		//1 (bool)
-	"text_bold" : null,
-		//1 (bool)
-	"text_font" : null,
-		//text font
-	"use_social" : null,
-		//1 (bool) NOTE: use_social TRUE disables social icons
-	"social_icon_variant" : null,
-		//sign	(default)
-		//simbol
-	"social_icon_size" : null,
-		//1x
-		//large
-		//2x	(default)
-		//3x
-		//4x
-	"animation": 1
-}
 */
-
+}//EOC
