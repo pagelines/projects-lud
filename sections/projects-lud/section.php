@@ -2,9 +2,9 @@
 /*
 	Section: Projects Lud
 	Author: bestrag
-	Version: 1.1
+	Version: 1.2
 	Author URI: http://bestrag.net
-	Demo: http://bestrag.net/projects_lud/
+	Demo: http://bestrag.net/projects-lud/demo/
 	Description: Custom Post Type Section for displaying Projects/Portfolio
 	Class Name: ProjectsLud
 	Filter: component
@@ -65,14 +65,15 @@ class ProjectsLud extends PageLinesSection {
 		}
 	}
 
-	/* section_head */
-	function section_head() {
-		$clone_id = $this->meta['clone'];
+	//handle master template
+	function setup_oset(){
 		if( $this->opt('opt_set_select') ) {
 			$this->update_lud_settings($this->opt('opt_set_select'));
-			if( array_key_exists($clone_id, $this->temp_meta) )$this->meta['set'] = wp_parse_args( $this->temp_meta[$clone_id], $this->meta['set'] );
 		}
-		//less template
+	}
+
+	/* section_head */
+	function section_head() {
 		$this->lud_opts['template_name']	= ( $this->opt( 'template_name' ) ) ? $this->opt( 'template_name' ) : $this->default_template;
 		//text style and weight
 		$this->lud_opts['text_italic']	= ( $this->opt( 'text_italic' ) ) ? 'italic' : 'normal' ;
@@ -101,7 +102,6 @@ class ProjectsLud extends PageLinesSection {
 		//carousell single item min width
 		$this->lud_opts['defFredWidth']		= 200;
 		$this->lud_opts['fredWidth']		= 300;
-
 		//all you need is json
 		$lud_opts	= json_encode($this->lud_opts);
 		?>
@@ -196,8 +196,6 @@ class ProjectsLud extends PageLinesSection {
 
 	//section template
 	function section_template(){
-		$clone_id = $this->meta['clone'];
-		if( array_key_exists($clone_id, $this->temp_meta) )$this->meta['set'] = wp_parse_args( $this->temp_meta[$clone_id], $this->meta['set'] );
 		//params
 		$template_name	= ( $this->opt( 'template_name' ) ) ? $this->opt( 'template_name' ) : $this->default_template;
 		$use_link		= ( $this->opt('use_link') ) ? $this->opt('use_link') : false;
@@ -369,7 +367,7 @@ class ProjectsLud extends PageLinesSection {
 					'type'		=> 'select',
 					'label'	=> __( 'Choose Template', 'pagelines' ),
 					'opts'		=> $this->get_template_selectvalues(),
-					'compile'	=> true
+//					'compile'	=> true
 				),
 				array(
 					'key'	=>	'use_link',
@@ -770,15 +768,15 @@ class ProjectsLud extends PageLinesSection {
 					),
 					'partner' => array(
 						'type'       => 'text',
-						'inputlabel' => __( 'Partner Company Name (if any)', 'pagelines' )
+						'inputlabel' => __( 'Partner Company Name', 'pagelines' )
 					),
 					'partner_url' => array(
 						'type'       => 'text',
-						'inputlabel' =>  __( 'Partner Company URL (if any)', 'pagelines' )
+						'inputlabel' =>  __( 'Partner Company URL', 'pagelines' )
 					),
 					'project_slogan' => array(
 						'type'       => 'text',
-						'inputlabel' => __( 'Project Slogan (if any)', 'pagelines' )
+						'inputlabel' => __( 'Project Slogan', 'pagelines' )
 					),
 					'img1'  => array(
 						'inputlabel' => __( 'Associate an image with this '.$this->single, 'pagelines' ),
@@ -876,7 +874,7 @@ class ProjectsLud extends PageLinesSection {
 				'partner_url'=>   'http://www.pagelines.com',
 				'project_slogan'=>   'Random Project Motivation',
 				'custom_text1'	=>   '[pl_button type="primary" size="default" link="mailto:#"]Email Me[/pl_button]',
-				'custom_text2'	=>   'Great Leader',
+				'custom_text2'	=>   '',
 				'img1'		=>   $this->base_url.'/images/placeholder-320x320.png',
 				'img2'      =>   $this->base_url.'/images/placeholder-320x320.png',
 				'demo'		=> true,
@@ -890,7 +888,7 @@ class ProjectsLud extends PageLinesSection {
 				'partner_url'=>   'http://www.pagelines.com',
 				'project_slogan'=>   'Random Project Motivation',
 				'custom_text1'	=>   '[pl_button type="primary" size="default" link="mailto:#"]Email Me[/pl_button]',
-				'custom_text2'	=>   'Great Leader',
+				'custom_text2'	=>   '',
 				'img1'		=>   $this->base_url.'/images/placeholder-320x320.png',
 				'img2'      =>   $this->base_url.'/images/placeholder-320x320.png',
 				'demo'		=> true,
@@ -904,7 +902,7 @@ class ProjectsLud extends PageLinesSection {
 				'partner_url'=>   'http://www.pagelines.com',
 				'project_slogan'=>   'Random Project Motivation',
 				'custom_text1'	=>   '[pl_button type="primary" size="default" link="mailto:#"]Email Me[/pl_button]',
-				'custom_text2'	=>   'Great Leader',
+				'custom_text2'	=>   '',
 				'img1'		=>   $this->base_url.'/images/placeholder-320x320.png',
 				'img2'      =>   $this->base_url.'/images/placeholder-320x320.png',
 				'demo'		=> true,
@@ -918,7 +916,7 @@ class ProjectsLud extends PageLinesSection {
 				'partner_url'=>   'http://www.pagelines.com',
 				'project_slogan'=>   'Random Project Motivation',
 				'custom_text1'	=>   '[pl_button type="primary" size="default" link="mailto:#"]Email Me[/pl_button]',
-				'custom_text2'	=>   'Great Leader',
+				'custom_text2'	=>   '',
 				'img1'		=>   $this->base_url.'/images/placeholder-320x320.png',
 				'img2'      =>   $this->base_url.'/images/placeholder-320x320.png',
 				'demo'		=> true,
@@ -932,7 +930,7 @@ class ProjectsLud extends PageLinesSection {
 				'partner_url'=>   'http://www.pagelines.com',
 				'project_slogan'=>   'Random Project Motivation',
 				'custom_text1'	=>   '[pl_button type="primary" size="default" link="mailto:#"]Email Me[/pl_button]',
-				'custom_text2'	=>   'Great Leader',
+				'custom_text2'	=>   '',
 				'img1'		=>   $this->base_url.'/images/placeholder-320x320.png',
 				'img2'      =>   $this->base_url.'/images/placeholder-320x320.png',
 				'demo'		=> true,
@@ -946,7 +944,7 @@ class ProjectsLud extends PageLinesSection {
 				'partner_url'=>   'http://www.pagelines.com',
 				'project_slogan'=>   'Random Project Motivation',
 				'custom_text1'	=>   '[pl_button type="primary" size="default" link="mailto:#"]Email Me[/pl_button]',
-				'custom_text2'	=>   'Great Leader',
+				'custom_text2'	=>   '',
 				'img1'		=>   $this->base_url.'/images/placeholder-320x320.png',
 				'img2'      =>   $this->base_url.'/images/placeholder-320x320.png',
 				'demo'		=> true,
@@ -960,7 +958,7 @@ class ProjectsLud extends PageLinesSection {
 				'partner_url'=>   'http://www.pagelines.com',
 				'project_slogan'=>   'Random Project Motivation',
 				'custom_text1'	=>   '[pl_button type="primary" size="default" link="mailto:#"]Email Me[/pl_button]',
-				'custom_text2'	=>   'Great Leader',
+				'custom_text2'	=>   '',
 				'img1'		=>   $this->base_url.'/images/placeholder-320x320.png',
 				'img2'      =>   $this->base_url.'/images/placeholder-320x320.png',
 				'demo'		=> true,
@@ -975,7 +973,7 @@ class ProjectsLud extends PageLinesSection {
 				'project_moto'	=>   'Random Project Motivation',
 				'project_slogan'=>   'Random Project Motivation',
 				'custom_text1'	=>   '[pl_button type="primary" size="default" link="mailto:#"]Email Me[/pl_button]',
-				'custom_text2'	=>   'Great Leader',
+				'custom_text2'	=>   '',
 				'img1'		=>   $this->base_url.'/images/placeholder-320x320.png',
 				'img2'      =>   $this->base_url.'/images/placeholder-320x320.png',
 				'demo'		=> true,
@@ -989,11 +987,6 @@ class ProjectsLud extends PageLinesSection {
 			$defaults['post_type']		= $post_type;
 			$defaults['post_status']		= 'publish';
 			$id				= wp_insert_post( $defaults );
-			//$aid = wp_insert_attachment($defaults, 'placeholder-320x320.png');
-			//if (!set_post_thumbnail($id,$aid)) die('x');
-			//$attach_data = wp_generate_attachment_metadata( $aid, $this->base_dir.'/images/placeholder-320x320.png' );
-			//wp_update_attachment_metadata( $aid, $attach_data );
-			//update_post_meta($id, '_thumbnail_id',$aid);
 			update_post_meta( $id, 'client_name', $p['client_name'] );
 			update_post_meta( $id, 'client_name_url', $p['client_name_url'] );
 			update_post_meta( $id, 'partner', $p['partner'] );
@@ -1032,28 +1025,28 @@ class ProjectsLud extends PageLinesSection {
 		//$this->opt_update('opt_set_info', $template, 'local');
 		$this->opt_update('opt_set_select', null, 'local');
 		$default = array(
-			'template_name' => null,
-			'use_link' => null,
-			'taxonomy' => null,
-			'order' => null,
-			'orderby' => null,
-			'animation' => null,
-			'col_num' => null,
-			'slides_num' => null,
-			'slide_gutter' => null,
-			'equal_height' => null,
-			'grid_selector' => null,
-			'text_italic' => null,
-			'text_bold' => null,
-			'text_font' => null,
-			'auto' => null,
-			'pause_on_hover' => null,
-			'controls' => null,
-			'pager' => null,
-			'mode' => null,
-			'pause' => null,
-			'speed' => null,
-			'fluid' => null,
+			'template_name' => 0,
+			'use_link' => 0,
+			'taxonomy' => 0,
+			'order' => 0,
+			'orderby' => 0,
+			'animation' => 0,
+			'col_num' => 0,
+			'slides_num' => 0,
+			'slide_gutter' => 0,
+			'equal_height' => 0,
+			'grid_selector' => 0,
+			'text_italic' => 0,
+			'text_bold' => 0,
+			'text_font' => 0,
+			'auto' => 0,
+			'pause_on_hover' => 0,
+			'controls' => 0,
+			'pager' => 0,
+			'mode' => 0,
+			'pause' => 0,
+			'speed' => 0,
+			'fluid' => 0,
 			'opt_set_info' => $template
 		);
 		$data_path = $this->base_dir.'/master-template/';
@@ -1062,9 +1055,9 @@ class ProjectsLud extends PageLinesSection {
 		$opts = wp_parse_args( $opts_json, $default );
 		foreach ($opts as $key => $value) {
 			$this->opt_update($key, $value, 'local');
-			$this->temp_meta[$key] = $value;
+			$this->meta['set'][$key] = $value;
  		}
-		if( !PL_LESS_DEV ) pl_flush_draft_caches();
+//		if( !PL_LESS_DEV ) pl_flush_draft_caches();
 	}
 
 	//handle less template

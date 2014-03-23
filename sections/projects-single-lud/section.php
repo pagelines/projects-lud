@@ -2,7 +2,7 @@
 /*
 	Section: Projects Single Lud
 	Author: bestrag
-	Version: 1.0
+	Version: 1.1
 	Author URI: http://bestrag.net
 	Demo: http://bestrag.net/projects-lud/
 	Description: Projects Single Lud
@@ -111,6 +111,7 @@ class ProjectsSingleLud extends PageLinesSection {
 			);
 		return $opts;
 	}
+
 	//Custom post type posts list
 	function get_single_posts(){
 		 global $post;
@@ -128,6 +129,7 @@ class ProjectsSingleLud extends PageLinesSection {
 		wp_reset_postdata();
 		return $array;
 	}
+
 	//template list for section_opts()
 	function get_template_selectvalues(){
 		$dir 	= $this->base_dir.'/templates/';
@@ -139,14 +141,13 @@ class ProjectsSingleLud extends PageLinesSection {
 		}
 		return $array;
 	}
-
+/*
 	function section_persistent(){
-		//add_action( 'template_redirect',array(&$this, 'snav_less') );
 		add_filter( 'pl_settings_array', array( &$this, 'get_meta_array' ) );
 		add_filter('pless_vars', array(&$this, 'add_less_vars'));
 	}
 
-	/* site options metapanel */
+	//site options metapanel
 	function get_meta_array( $settings ){
 
 		$settings[ $this->id ] = array(
@@ -168,13 +169,13 @@ class ProjectsSingleLud extends PageLinesSection {
 						'key'           => $this->prefix.'-templatebg',
 						'type'       => 'color',
 						'label' => __( 'Container Background', 'pagelines' ),
-						'default'	=> pl_hashify(pl_setting('bodybg')),
+						'default'	=> '',
 					),
 					array(
 						'key'           => $this->prefix.'-singlebg',
 						'type'       => 'color',
 						'label' => __( 'Single '.$this->single_up.' Background', 'pagelines' ),
-						'default'	=> pl_hashify(pl_setting('bodybg')),
+						'default'	=> '',
 					),
 					array(
 						'key'           => $this->prefix.'-txtcolor',
@@ -183,7 +184,7 @@ class ProjectsSingleLud extends PageLinesSection {
 						'default'	=> pl_hashify(pl_setting('text_primary')),
 					),
 					array(
-						'key'           => $this->prefix.'-othertxtcolor',
+						'key'           => $this->prefix.'-metatxtcolor',
 						'type'       => 'color',
 						'label' => __( 'Non Content Text Color', 'pagelines' ),
 						'default'	=> pl_hashify(pl_setting('text_primary')),
@@ -201,18 +202,12 @@ class ProjectsSingleLud extends PageLinesSection {
 	}
 
 	function add_less_vars($vars){
-		$vars[$this->prefix.'-templatebg'] 	= ( pl_setting($this->prefix.'-templatebg') ) ? pl_hashify( pl_setting( $this->prefix.'-templatebg' ) ) : pl_hashify(pl_setting('bodybg'));
-		$vars[$this->prefix.'-singlebg'] 	= ( pl_setting($this->prefix.'-singlebg') ) ? pl_hashify( pl_setting( $this->prefix.'-singlebg' ) ) : pl_hashify(pl_setting('bodybg'));
+		$vars[$this->prefix.'-templatebg'] 	= ( pl_setting($this->prefix.'-templatebg') ) ? pl_hashify( pl_setting( $this->prefix.'-templatebg' ) ) : 'transparent';
+		$vars[$this->prefix.'-singlebg'] 	= ( pl_setting($this->prefix.'-singlebg') ) ? pl_hashify( pl_setting( $this->prefix.'-singlebg' ) ) : 'transparent';
 		$vars[$this->prefix.'-txtcolor'] 	= ( pl_setting($this->prefix.'-txtcolor') ) ? pl_hashify( pl_setting( $this->prefix.'-txtcolor' ) ) : pl_hashify(pl_setting('text_primary'));
+		$vars[$this->prefix.'-metatxtcolor'] 	= ( pl_setting($this->prefix.'-metatxtcolor') ) ? pl_hashify( pl_setting( $this->prefix.'-metatxtcolor' ) ) : pl_hashify(pl_setting('text_primary'));
 		$vars[$this->prefix.'-linkcolor']	= (pl_setting($this->prefix.'-linkcolor')) ? pl_hashify(pl_setting($this->prefix.'-linkcolor')) : pl_hashify(pl_setting('linkcolor'));
 		return $vars;
 	}
-	/*
-	//handle less template
-	function snav_less(){
-		$template 		= ($this->meta['set']['snav_template']) ? $this->meta['set']['snav_template'] : $this->default_template;
-		$template_file 	= sprintf('%s/less/%s.less', $this->base_dir, $template);
-		pagelines_insert_core_less( $template_file );
-	}
-	*/
+*/
 }//EOC
