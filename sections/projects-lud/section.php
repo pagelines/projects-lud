@@ -150,7 +150,7 @@ class ProjectsLud extends PageLinesSection {
 						else{
 							//calculate masonry column width and add selector class
 							jQuery( 'li:nth-child(' + ludOpts[cloneID]['grid_selector'] + ')',ludSelectors[cloneID]['wraper'] ).addClass(sectionPrefix+'-grid-selector');
-							ludOpts[cloneID]['itemWidth'] = jQuery('.'+sectionPrefix+'-grid-selector').outerWidth();
+							ludOpts[cloneID]['itemWidth'] = jQuery('.'+sectionPrefix+'-grid-selector',ludSelectors[cloneID]['wraper']).outerWidth();
 						}
 					}
 					if( ludOpts[cloneID]['numslides'] !== 0 ){
