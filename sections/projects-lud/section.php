@@ -2,7 +2,7 @@
 /*
 	Section: Projects Lud
 	Author: bestrag
-	Version: 1.2
+	Version: 1.2.1
 	Author URI: http://bestrag.net
 	Demo: http://bestrag.net/projects-lud/demo/
 	Description: Custom Post Type Section for displaying Projects/Portfolio

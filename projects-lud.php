@@ -6,6 +6,6 @@
 	Plugin URI: http://www.bestrag.net/projects-lud/
 	Description: Testimonials Lud for DMS
 	Description: Custom Post Type Section for displaying Projects/Portfolio
-	Version: 1.2
+	Version: 1.2.1
 	PageLines: true
 	*/
