@@ -2,7 +2,7 @@
 /*
 	Section: Projects Lud
 	Author: bestrag
-	Version: 1.2.1
+	Version: 1.2.2
 	Author URI: http://bestrag.net
 	Demo: http://bestrag.net/projects-lud/demo/
 	Description: Custom Post Type Section for displaying Projects/Portfolio
@@ -21,6 +21,7 @@ class ProjectsLud extends PageLinesSection {
 	var $section_id		= 'projects-lud';
 	var $default_template	= 'default';
 	var $temp_meta	= array();
+	var $clone			= '';
 
 	/* section_styles */
 	function section_scripts() {
@@ -30,6 +31,12 @@ class ProjectsLud extends PageLinesSection {
 		wp_enqueue_script( 'jquery-ludloop', $this->base_url.'/jquery.ludloop.js', array( 'jquery' ), true );
 	}
 
+	function setup_oset($clone){
+		if( $this->opt('opt_set_select') ) {
+			$this->update_lud_settings($this->opt('opt_set_select'));
+		}
+
+	}
 	/* clone specific styles */
 	function section_styles(){
 		$colors=array(
@@ -62,13 +69,6 @@ class ProjectsLud extends PageLinesSection {
 		if ($css_code) {
 			$lud_style = sprintf('<style type="text/css" id="%1$s-custom-%2$s">%3$s</style>', $this->prefix, $this->meta['clone'], $css_code);
 			echo $lud_style;
-		}
-	}
-
-	//handle master template
-	function setup_oset(){
-		if( $this->opt('opt_set_select') ) {
-			$this->update_lud_settings($this->opt('opt_set_select'));
 		}
 	}
 
@@ -831,7 +831,7 @@ class ProjectsLud extends PageLinesSection {
 			'singular_label'		=> __( $this->single_up, 'pagelines' ),
 			'description'		=> __( 'For creating '.$this->multiple.' items.', 'taxonomies' ),
 			'taxonomies'		=> array( $this->taxID ),
-			'menu_icon'		=> $this->icon,
+			//'menu_icon'		=> $this->icon,
 			'public'			=> $public_pt,
 			'show_ui'		=> true,
 			'hierarchical'		=> true,

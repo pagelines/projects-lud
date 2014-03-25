@@ -107,7 +107,7 @@
 		.proj-post_content{
 			padding: 12px;
 		}
-//		.proj-post_excerpt, .proj-custom_text1, .proj-custom_text2{display: none;}
+		.proj-post_excerpt{display: none;}
 /*
 		#proj-group-2{
 			clear: both;
@@ -219,30 +219,34 @@
 		padding: 8px;
 	}
 	#proj-group-1{
-		.proj-feature{
-			img{border-radius: 3px 3px 0 0; width: 100%; max-height: 150px;
-			opacity: 1; .transition(opacity .2s linear);}
-		}
-		.proj-post_excerpt{
-			display: none;
-			position: absolute;
-			top: 0;
-			left: 0;
-			font-size: 13px;
-			overflow: hidden;
-			color: #333333;
-			line-height: 17px;
-			word-wrap: break-word;
-			padding: 5%;
-			border-top: 1px solid #e7e7e7;
-		}
 		&:hover{
 			.proj-feature{img{opacity: 0;.transition(opacity .2s linear);}}
 			.proj-post_excerpt{display: block;}
 		}
 	}
+	.proj-feature{
+		img{border-radius: 3px 3px 0 0; width: 100%; max-height: 150px;
+		opacity: 1; .transition(opacity .2s linear);}
+	}
+	.proj-post_excerpt{
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		font-size: 13px;
+		overflow: hidden;
+		color: #333333;
+		line-height: 17px;
+		word-wrap: break-word;
+		padding: 5%;
+		border-top: 1px solid #e7e7e7;
+	}
+	.proj-post_content{
+		display: none;
+	}
 	#proj-group-2{
-		.proj-post_title{
+	}
+	.proj-post_title{
 		overflow: hidden;
 		clear: both;
 		color: #444444;
@@ -251,7 +255,6 @@
 		margin: 0;
 		max-height: 68px;
 		padding-top: 4px;
-		}
 	}
 }//basic end
 /************************************busy************************************/
@@ -318,18 +321,21 @@
 		opacity: .9;
 		.box-sizing(border-box);
 		.transition(all .2s ease);
-		.proj-post_title{
-			font-size: 1.3em;
-			margin-bottom: 8px;
-		}
-		.proj-post_excerpt{
-			font-size: .9em;
-			line-height: 1.2;
-		}
+	}
+	.proj-post_title{
+		font-size: 1.3em;
+		margin-bottom: 8px;
+	}
+	.proj-post_excerpt{
+		font-size: .9em;
+		line-height: 1.2;
 	}
 	.proj-custom_text2{
 	}
 	.proj-custom_text1{
+	}
+	.proj-post_content{
+		display:none;
 	}
 }//busy end
 /************************************zigzag************************************/
@@ -369,6 +375,9 @@
 	.proj-client_name{
 		text-align: center;
 		font-style: italic;
+	}
+	.proj-post_content{
+		display: none;
 	}
 	li.masonry-brick {margin: 0 !important;}
 }//zigzag end
