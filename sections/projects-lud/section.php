@@ -2,7 +2,7 @@
 /*
 	Section: Projects Lud
 	Author: bestrag
-	Version: 1.2.2
+	Version: 1.3
 	Author URI: http://bestrag.net
 	Demo: http://bestrag.net/projects-lud/demo/
 	Description: Custom Post Type Section for displaying Projects/Portfolio
@@ -21,7 +21,8 @@ class ProjectsLud extends PageLinesSection {
 	var $section_id		= 'projects-lud';
 	var $default_template	= 'default';
 	var $temp_meta	= array();
-	var $clone			= '';
+	var $clone		= '';
+	var $ico 		= '';
 
 	/* section_styles */
 	function section_scripts() {
@@ -31,12 +32,17 @@ class ProjectsLud extends PageLinesSection {
 		wp_enqueue_script( 'jquery-ludloop', $this->base_url.'/jquery.ludloop.js', array( 'jquery' ), true );
 	}
 
+	//master template
 	function setup_oset($clone){
 		if( $this->opt('opt_set_select') ) {
 			$this->update_lud_settings($this->opt('opt_set_select'));
 		}
-
+		//fontAwesome for DMS 2.0
+		global $platform_build;
+		$ver = intval(substr($platform_build, 0, 1));
+		$this->ico = ($ver === 2) ? 'fa' : 'icon';
 	}
+
 	/* clone specific styles */
 	function section_styles(){
 		$colors=array(
@@ -303,13 +309,13 @@ class ProjectsLud extends PageLinesSection {
 		$controls = ('fredslider' === $animation) ?
 			sprintf(
 				'<span class="%1$s-prev">
-					<a class="%1$s-prev-link" href="#"><i class="icon-chevron-left"></i></a>
+					<a class="%1$s-prev-link" href="#"><i class="%2$s %2$s-chevron-left"></i></a>
 				</span>
 				<span class="%1$s-next">
-					<a class="%1$s-next-link" href="#"><i class="icon-chevron-right"></i></a>
+					<a class="%1$s-next-link" href="#"><i class="%2$s %2$s-chevron-right"></i></a>
 				</span>
 				<div class="%1$s-pager"></div>'
-			, $this->prefix)	: null;
+			, $this->prefix, $this->ico)	: null;
 		//wrap it up
 		$ludloop = sprintf('<div class="%1$s-container post-id-%2$s template-%3$s"><ul class="%1$s-wraper %4$s">%5$s</ul>%6$s</div>',
 			$this->prefix,
@@ -831,7 +837,7 @@ class ProjectsLud extends PageLinesSection {
 			'singular_label'		=> __( $this->single_up, 'pagelines' ),
 			'description'		=> __( 'For creating '.$this->multiple.' items.', 'taxonomies' ),
 			'taxonomies'		=> array( $this->taxID ),
-			//'menu_icon'		=> $this->icon,
+			'menu_icon'		=> 'dashicons-screenoptions',
 			'public'			=> $public_pt,
 			'show_ui'		=> true,
 			'hierarchical'		=> true,
