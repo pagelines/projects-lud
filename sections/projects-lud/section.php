@@ -2,7 +2,7 @@
 /*
 	Section: Projects Lud
 	Author: bestrag
-	Version: 1.3
+	Version: 1.4.0
 	Author URI: http://bestrag.net
 	Demo: http://bestrag.net/projects-lud/demo/
 	Description: Custom Post Type Section for displaying Projects/Portfolio
@@ -61,8 +61,8 @@ class ProjectsLud extends PageLinesSection {
 			'arrow_colorL'		=> array('.'.$this->prefix.'-prev a','#'.$this->opt('arrow_color'), 'color'),
 			'arrow_colorR'		=> array('.'.$this->prefix.'-next a','#'.$this->opt('arrow_color'), 'color'),
 			'arrow_size'		=> array('.'.$this->prefix.'-prev, .'.$this->prefix.'-next', $this->opt('arrow_size').'px', 'font-size'),
-			'pager_color'		=> array('.'.$this->prefix.'-pager span','#'.$this->opt('pager_color'), 'color'),
-			'pageractive_color'	=> array('.'.$this->prefix.'-pager a.selected span','#'.$this->opt('pageractive_color'), 'color'),
+			'pager_color'		=> array('.'.$this->prefix.'-pager span','#'.$this->opt('pager_color'), 'background'),
+			'pageractive_color'	=> array('.'.$this->prefix.'-pager a.selected span','#'.$this->opt('pageractive_color'), 'background'),
 		);
 
 		$css_code = '';
@@ -125,7 +125,7 @@ class ProjectsLud extends PageLinesSection {
 					'sectionPrefix'	: sectionPrefix,
 					'sectionClone'	: sectionClone,
 					'container'	: jQuery('.'+sectionPrefix+'-container', sectionClone),
-					'wraper'		: jQuery('.'+sectionPrefix+'-wraper', sectionClone),
+					'wraper'	: jQuery('.'+sectionPrefix+'-wraper', sectionClone),
 					'ludItem'	: jQuery('.'+sectionPrefix+'-item', sectionClone),
 					'inner'		: jQuery('.'+sectionPrefix+'-item-inner', sectionClone),
 					'pager' 		: jQuery('.'+sectionPrefix+'-pager', sectionClone),
@@ -266,7 +266,7 @@ class ProjectsLud extends PageLinesSection {
 				//create link to single post
 				if(in_array($use_link, array('link', 'colorbox'))) {
 					$link_index = $index + 1;
-					$a_open = sprintf('<a href="%1$s" class="%2$s-link %2$s-link-%3$s" data-proj-id="%3$s">', $post_data[$index]['post_url'][0], $this->prefix, $link_index );
+					$a_open = sprintf('<a href="%1$s" class="%2$s-link %2$s-link-%3$s" data-inner-id="%2$s-inner-%3$s">', $post_data[$index]['post_url'][0], $this->prefix, $link_index );
 					$a_close = '</a>';
 				}
 				//render elements

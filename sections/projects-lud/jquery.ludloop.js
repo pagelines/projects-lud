@@ -1,5 +1,5 @@
 /*
-ver: 1.5
+ver: 1.6
 */
 //TODO: ludResponsive - add responsiveClasses & ItemStyle to $(document).ready(...);
 jQuery(window).load(function(){
@@ -97,7 +97,7 @@ jQuery(window).load(function(){
 				jQuery('.'+self.selectors.sectionPrefix+'-link',self.selectors.ludItem).click(function(e){
 					e.preventDefault();
 					var obj = jQuery(e.currentTarget);
-					obj.colorbox({inline:true, href: '#'+self.selectors.sectionPrefix+'-inner-'+obj.data(self.selectors.sectionPrefix+'-id'), height: '600px', width: '80%'});
+					obj.colorbox({inline:true, href: '#'+ obj.data('inner-id'), height: '600px', width: '80%'});
 				});
 			}
 		},

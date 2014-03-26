@@ -2,7 +2,7 @@
 /*
 	Section: Projects Single Lud
 	Author: bestrag
-	Version: 1.1
+	Version: 1.4.0
 	Author URI: http://bestrag.net
 	Demo: http://bestrag.net/projects-lud/
 	Description: Projects Single Lud
