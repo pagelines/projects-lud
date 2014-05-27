@@ -3,7 +3,7 @@
 	position: relative;
 	min-height: 120px;
 	overflow: hidden;
-	ul{
+	&>ul{
 		opacity: 0;
 		list-style-type: none;
 	}
@@ -14,7 +14,10 @@
 	}
 	.proj-feature{}
 	//.fredslider li{width: 33%;}
-	.in-grid{	margin: 0 auto; li{width: 33%;}}
+	.in-grid{
+		margin: 0 auto; 
+		&>li{width: 33%;}
+	}
 	.masonry-brick{
 		margin: 8px 0;
 		overflow: hidden;
@@ -73,6 +76,7 @@
 
 	.proj-item-inner{
 		.clearfix;
+		a div{color: @textColor;}
 		.proj-feature, .proj-img1, .proj-img2{
 			float: left;
 			padding-right: 10px;
@@ -374,6 +378,7 @@
 	.proj-post_content{
 		display: none;
 	}
+	.proj-custom_text1{text-align: center;}
 	li.masonry-brick {margin: 0 !important;}
 }//zigzag end
 /************************************single************************************/

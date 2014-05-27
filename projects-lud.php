@@ -6,6 +6,6 @@
 	Plugin URI: http://www.bestrag.net/projects-lud/
 	Description: Custom Post Type Section for displaying Projects/Portfolio
 	Demo: http://bestrag.net/projects-lud/demo/
-	Version: 1.4.0
+	Version: 1.4.1
 	PageLines: true
 */

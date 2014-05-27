@@ -2,7 +2,7 @@
 /*
 	Section: Projects Lud
 	Author: bestrag
-	Version: 1.4.0
+	Version: 1.4.1
 	Author URI: http://bestrag.net
 	Demo: http://bestrag.net/projects-lud/demo/
 	Description: Custom Post Type Section for displaying Projects/Portfolio
@@ -211,7 +211,7 @@ class ProjectsLud extends PageLinesSection {
 		$animation		= ( $this->opt( 'animation' ) ) ? 'fredslider' : 'in-grid';
 		//template json
 		$data_path	= $this->base_dir.'/data/';
-		$template_json	= (file_exists($data_path.$template_name.'.json')) ? file_get_contents($data_path.$template_name.'.json') : file_get_contents($data_path.'default.json') ;
+		$template_json	= (file_exists($data_path.$template_name.'.json')) ? file_get_contents($data_path.$template_name.'.json') : file_get_contents($data_path.'all.json') ;
 		$template_json	= json_decode($template_json);
 		//query params
 		$slides_num	= ( $this->opt( 'slides_num' ) ) ? $this->opt( 'slides_num' ) : '-1';
@@ -859,7 +859,7 @@ class ProjectsLud extends PageLinesSection {
 			'cb'		=> "<input type=\"checkbox\" />",
 			'title'		=> 'Title',
 			'media'		=> 'Media',
-			'client'		=> 'Client Name',
+			'client_name'	=> 'Client Name',
 			'description'	=> 'Description',
 			$this->taxID	=> $this->single_up.' Sets',
 		);
